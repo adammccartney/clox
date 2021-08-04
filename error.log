@@ -1,0 +1,10 @@
+make[1]: Entering directory '/home/adam/.local/src/clox'
+      cc src/value.c                              -std=c99 -Wall -Wextra -Werror -Wno-unused-parameter  -O3 -flto
+      cc src/chunk.c                              -std=c99 -Wall -Wextra -Werror -Wno-unused-parameter  -O3 -flto
+src/chunk.c: In function ‘addConstant’:
+src/chunk.c:41:5: error: expected declaration or statement at end of input
+     return chunk->constants.count - 1;
+     ^~~~~~
+make[1]: *** [c.make:44: build/release/clox/chunk.o] Error 1
+make[1]: Leaving directory '/home/adam/.local/src/clox'
+make: *** [Makefile:16: clox] Error 2

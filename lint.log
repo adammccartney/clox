@@ -1,0 +1,43 @@
+Error while trying to load a compilation database:
+Could not auto-detect compilation database for file "src/chunk.c"
+No compilation database found in /home/adam/.local/src/clox/src or any parent directory
+fixed-compilation-database: Error while opening fixed database: No such file or directory
+json-compilation-database: Error while opening JSON database: No such file or directory
+Running without flags.
+53 warnings generated.
+67 warnings generated.
+80 warnings generated.
+96 warnings generated.
+151 warnings generated.
+165 warnings generated.
+/home/adam/.local/src/clox/src/chunk.h:1:9: error: header guard does not follow preferred style [llvm-header-guard,-warnings-as-errors]
+#ifndef clox_chunk_h
+        ^~~~~~~~~~~~
+        _HOME_ADAM__LOCAL_SRC_CLOX_SRC_CHUNK_H
+/home/adam/.local/src/clox/src/common.h:1:9: error: header guard does not follow preferred style [llvm-header-guard,-warnings-as-errors]
+#ifndef clox_common_h
+        ^~~~~~~~~~~~~
+        _HOME_ADAM__LOCAL_SRC_CLOX_SRC_COMMON_H
+/home/adam/.local/src/clox/src/main.c:4:14: error: parameter 'argc' is unused [misc-unused-parameters,-warnings-as-errors]
+int main(int argc, const char* argv[]) {
+             ^~~~~
+              /*argc*/
+/home/adam/.local/src/clox/src/main.c:4:32: error: parameter 'argv' is unused [misc-unused-parameters,-warnings-as-errors]
+int main(int argc, const char* argv[]) {
+                               ^~~~~
+                                /*argv*/
+/home/adam/.local/src/clox/src/memory.c:5:40: error: parameter 'oldSize' is unused [misc-unused-parameters,-warnings-as-errors]
+void* reallocate(void* pointer, size_t oldSize, size_t newSize) {
+                                       ^~~~~~~~
+                                        /*oldSize*/
+/home/adam/.local/src/clox/src/memory.c:12:24: error: statement should be inside braces [hicpp-braces-around-statements,-warnings-as-errors]
+    if (result == NULL) exit(1);
+                       ^
+                        {
+/home/adam/.local/src/clox/src/memory.h:1:9: error: header guard does not follow preferred style [llvm-header-guard,-warnings-as-errors]
+#ifndef clox_memory_h
+        ^~~~~~~~~~~~~
+        _HOME_ADAM__LOCAL_SRC_CLOX_SRC_MEMORY_H
+Suppressed 157 warnings (157 in non-user code).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+7 warnings treated as errors
