@@ -13,14 +13,8 @@ void disassembleChunk(Chunk* chunk, const char* name) {
 }
 
 static int constantInstruction(const char* name, Chunk* chunk, int offset) {
-    if (strcmp(name, "OP_CONSTANT") == 0) {  // strings match
-        uint8_t constant = chunk->code[offset+1];
-        printf("%-16s %4d '", name, constant);
-    }
-    if (strcmp(name, "OP_CONSTANT_LONG") == 0) {
-        uint24_t constant = chunk->code[offset+1];
-        printf("%-16s %4ld '", name, constant);
-    }
+    uint8_t constant = chunk->code[offset+1];
+    printf("%-16s %4d '", name, constant);
     printValue(chunk->constants.values[constant]);
     printf("'\n");
     return offset + 2;
