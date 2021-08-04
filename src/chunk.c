@@ -3,6 +3,7 @@
 #include "chunk.h"
 #include "memory.h"
 
+#define UINT8_LIM(256)
 
 void initChunk(Chunk* chunk) {
     chunk->count = 0;
@@ -41,7 +42,13 @@ int addConstant(Chunk* chunk, Value value) {
     return chunk->constants.count - 1;
 }
 
-
 void writeConstant(Chunk* chunk, Value value, int line) {
-   writeValueArray(&chunk->constants, value); 
+    // call addConstant to get an index
+    int index = addConstant(chunk, value);
+    // check what size the index is
+    if (index < UINT8_LIM)  { // is less than 256
+        writeChunk(chunk, OP_CONSTANT, line);
+    } else {
+        writeChink(chunk, OP_CONSTANT_LONG, line);
+    }
 }
