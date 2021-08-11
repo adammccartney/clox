@@ -53,7 +53,7 @@ static bool match(char expected) {
         return true;
     }
 
-static Token makeToken(TokenType) {
+static Token makeToken(TokenType type) {
     Token token;
     token.type = type;
     token.start = scanner.start;
@@ -138,6 +138,9 @@ static TokenType identifierType() {
                  break;
         case 'v': return checkKeyword(1, 2, "ar", TOKEN_VAR);
         case 'w': return checkKeyword(1, 4, "hile", TOKEN_WHILE);
+    }
+
+    return TOKEN_IDENTIFIER;
 }
 
 static Token identifier() {
@@ -162,7 +165,7 @@ static Token number() {
 static Token string() {
     while (peek() != '"' && !isAtEnd()) {
         if (peek() == '\n') scanner.line++;
-        advance;
+        advance();
     }
 
     if (isAtEnd()) return errorToken("Unterminated string.");

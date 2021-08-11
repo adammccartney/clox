@@ -1,9 +1,4 @@
 make[1]: Entering directory '/home/adam/.local/src/clox'
-      cc src/vm.c                                 -std=c99 -Wall -Wextra -Werror -Wno-unused-parameter  -O3 -flto
-src/vm.c:31:24: error: ‘run’ defined but not used [-Werror=unused-function]
- static InterpretResult run() {
-                        ^~~
-cc1: all warnings being treated as errors
-make[1]: *** [c.make:44: build/release/clox/vm.o] Error 1
+      cc src/scanner.c                            -std=c99 -Wall -Wextra -Werror -Wno-unused-parameter  -O3 -flto
+      cc build/clox                               -std=c99 -Wall -Wextra -Werror -Wno-unused-parameter  -O3 -flto
 make[1]: Leaving directory '/home/adam/.local/src/clox'
-make: *** [Makefile:23: clox] Error 2
