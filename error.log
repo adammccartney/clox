@@ -1,4 +1,52 @@
 make[1]: Entering directory '/home/adam/.local/src/clox'
-      cc src/scanner.c                            -std=c99 -Wall -Wextra -Werror -Wno-unused-parameter  -O3 -flto
-      cc build/clox                               -std=c99 -Wall -Wextra -Werror -Wno-unused-parameter  -O3 -flto
+      cc src/chunk.c                              -std=c99 -Wall -Wextra -Werror -Wno-unused-parameter  -O3 -flto
+In file included from src/memory.h:5,
+                 from src/chunk.c:4:
+src/object.h: In function ‘isObjType’:
+src/object.h:37: error: unterminated argument list invoking macro "IS_OBJ"
+   37 | #endif
+      | 
+src/object.h:34:12: error: ‘IS_OBJ’ undeclared (first use in this function)
+   34 |     return IS_OBJ(value && AS_OBJ(value)->type == type;
+      |            ^~~~~~
+src/object.h:34:12: note: each undeclared identifier is reported only once for each function it appears in
+src/object.h:34:18: error: expected ‘;’ before ‘void’
+   34 |     return IS_OBJ(value && AS_OBJ(value)->type == type;
+      |                  ^
+      |                  ;
+In file included from src/chunk.c:4:
+src/chunk.c: In function ‘freeChunk’:
+src/memory.h:20:5: error: implicit declaration of function ‘reallocate’; did you mean ‘realloc’? [-Werror=implicit-function-declaration]
+   20 |     reallocate(pointer, sizeof(type) * (oldCount), 0)
+      |     ^~~~~~~~~~
+src/chunk.c:17:5: note: in expansion of macro ‘FREE_ARRAY’
+   17 |     FREE_ARRAY(uint8_t, chunk->code, chunk->capacity);
+      |     ^~~~~~~~~~
+src/chunk.c: In function ‘writeChunk’:
+src/memory.h:16:5: error: cast to pointer from integer of different size [-Werror=int-to-pointer-cast]
+   16 |     (type*)reallocate(pointer, sizeof(type) * (oldCount), \
+      |     ^
+src/chunk.c:28:23: note: in expansion of macro ‘GROW_ARRAY’
+   28 |         chunk->code = GROW_ARRAY(uint8_t, chunk->code,
+      |                       ^~~~~~~~~~
+src/memory.h:16:5: error: cast to pointer from integer of different size [-Werror=int-to-pointer-cast]
+   16 |     (type*)reallocate(pointer, sizeof(type) * (oldCount), \
+      |     ^
+src/chunk.c:30:24: note: in expansion of macro ‘GROW_ARRAY’
+   30 |         chunk->lines = GROW_ARRAY(int, chunk->lines,
+      |                        ^~~~~~~~~~
+src/chunk.c: In function ‘isObjType’:
+src/chunk.c:54:1: error: expected declaration or statement at end of input
+   54 | }
+      | ^
+At top level:
+src/chunk.c:45:6: error: ‘writeConstant’ defined but not used [-Werror=unused-function]
+   45 | void writeConstant(Chunk* chunk, Value value, int line) {
+      |      ^~~~~~~~~~~~~
+src/chunk.c:16:6: error: ‘freeChunk’ defined but not used [-Werror=unused-function]
+   16 | void freeChunk(Chunk* chunk) {
+      |      ^~~~~~~~~
+cc1: all warnings being treated as errors
+make[1]: *** [c.make:44: build/release/clox/chunk.o] Error 1
 make[1]: Leaving directory '/home/adam/.local/src/clox'
+make: *** [Makefile:23: clox] Error 2
