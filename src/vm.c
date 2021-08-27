@@ -113,6 +113,16 @@ static InterpretResult run() {
             case OP_TRUE: push(BOOL_VAL(true)); break;
             case OP_FALSE: push(BOOL_VAL(false)); break;
             case OP_POP: pop(); break;
+            case OP_GET_LOCAL: {
+                         uint8_t slot = READ_BYTE();
+                         push(vm.stack[slot]);
+                         break;
+                               }
+            case OP_SET_LOCAL: {
+                         uint8_t slot = READ_BYTE();
+                         vm.stack[slot] = peek(0);
+                         break;
+                               }
             case OP_GET_GLOBAL: {
                          ObjString* name = READ_STRING();
                          Value value;
@@ -127,8 +137,17 @@ static InterpretResult run() {
               ObjString* name = READ_STRING();
               tableSet(&vm.globals, name, peek(0));
               pop();
-              break();
+              break;
                                    }
+            case OP_SET_GLOBAL: {
+                ObjString* name = READ_STRING();
+                if (tableSet(&vm.globals, name, peek(0))) {
+                    tableDelete(&vm.globals, name);
+                    runtimeError("Undefined variable '%s'.", name->chars);
+                    return INTERPRET_RUNTIME_ERROR;
+                }
+                break;
+                                }
             case OP_EQUAL: {
                               Value b = pop();
                               Value a = pop();
@@ -142,7 +161,7 @@ static InterpretResult run() {
                            concatenate();
                         } else if (IS_NUMBER(peek(0)) && IS_NUMBER(peek(1))) {
                            double b = AS_NUMBER(pop());
-                           double_a = AS_NUMBER(pop());
+                           double a = AS_NUMBER(pop());
                            push(NUMBER_VAL(a + b));
                         } else {
                             runtimeError(
@@ -166,7 +185,7 @@ static InterpretResult run() {
                         break;
             case OP_PRINT: {
                         printValue(pop());
-                        print('\n');
+                        printf("\n");
                         break;
                            }
             case OP_RETURN: {
