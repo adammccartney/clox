@@ -1,8 +1,4 @@
 make[1]: Entering directory '/home/adam/.local/src/clox'
-      cc src/compiler.c                           -std=c99 -Wall -Wextra -Werror -Wno-unused-parameter  -O3 -flto
-      cc src/debug.c                              -std=c99 -Wall -Wextra -Werror -Wno-unused-parameter  -O3 -flto
-      cc src/main.c                               -std=c99 -Wall -Wextra -Werror -Wno-unused-parameter  -O3 -flto
-      cc src/memory.c                             -std=c99 -Wall -Wextra -Werror -Wno-unused-parameter  -O3 -flto
       cc src/object.c                             -std=c99 -Wall -Wextra -Werror -Wno-unused-parameter  -O3 -flto
       cc src/scanner.c                            -std=c99 -Wall -Wextra -Werror -Wno-unused-parameter  -O3 -flto
       cc src/table.c                              -std=c99 -Wall -Wextra -Werror -Wno-unused-parameter  -O3 -flto
