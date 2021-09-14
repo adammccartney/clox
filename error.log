@@ -1,8 +1,11 @@
 make[1]: Entering directory '/home/adam/.local/src/clox'
-      cc src/object.c                             -std=c99 -Wall -Wextra -Werror -Wno-unused-parameter  -O3 -flto
-      cc src/scanner.c                            -std=c99 -Wall -Wextra -Werror -Wno-unused-parameter  -O3 -flto
-      cc src/table.c                              -std=c99 -Wall -Wextra -Werror -Wno-unused-parameter  -O3 -flto
-      cc src/value.c                              -std=c99 -Wall -Wextra -Werror -Wno-unused-parameter  -O3 -flto
       cc src/vm.c                                 -std=c99 -Wall -Wextra -Werror -Wno-unused-parameter  -O3 -flto
-      cc build/clox                               -std=c99 -Wall -Wextra -Werror -Wno-unused-parameter  -O3 -flto
+src/vm.c: In function ‘closeUpvalues’:
+src/vm.c:160:28: error: ‘upvlaue’ undeclared (first use in this function); did you mean ‘upvalue’?
+  160 |         upvalue->closed = *upvlaue->location;
+      |                            ^~~~~~~
+      |                            upvalue
+src/vm.c:160:28: note: each undeclared identifier is reported only once for each function it appears in
+make[1]: *** [c.make:44: build/release/clox/vm.o] Error 1
 make[1]: Leaving directory '/home/adam/.local/src/clox'
+make: *** [Makefile:23: clox] Error 2
