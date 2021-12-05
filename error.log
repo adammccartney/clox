@@ -1,4 +1,10 @@
 make[1]: Entering directory '/home/adam/.local/src/clox'
       cc src/vm.c                                 -std=c99 -Wall -Wextra -Werror -Wno-unused-parameter  -O3 -flto
-      cc build/clox                               -std=c99 -Wall -Wextra -Werror -Wno-unused-parameter  -O3 -flto
+src/vm.c: In function ‘invoke’:
+src/vm.c:166:12: error: implicit declaration of function ‘invokeFromClass’ [-Werror=implicit-function-declaration]
+  166 |     return invokeFromClass(instance->klass, name, argCount);
+      |            ^~~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+make[1]: *** [c.make:44: build/release/clox/vm.o] Error 1
 make[1]: Leaving directory '/home/adam/.local/src/clox'
+make: *** [Makefile:23: clox] Error 2
